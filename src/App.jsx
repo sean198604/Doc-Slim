@@ -148,12 +148,8 @@ export default function App() {
         state("loading", "🖼️ 正在压缩图片...");
         blob = await compressImage(file, quality / 100, maxW);
         summary = `图片压缩完成：${formatBytes(file.size)} → ${formatBytes(blob.size)}，减少 ${((1 - blob.size / file.size) * 100).toFixed(1)}%`;
-      } else if (ext === "pdf") {
-        state("info", "📄 PDF 暂为轻量处理（深层压缩需服务端支持）");
-        blob = file;
-        summary = `PDF 已接收，原大小 ${formatBytes(file.size)}`;
       } else {
-        state("error", "❌ 不支持的文件类型，仅支持：xlsx / pptx / docx / 图片 / PDF");
+        state("error", "❌ 不支持的文件类型，仅支持：xlsx / pptx / docx / 图片");
         return;
       }
 
@@ -215,7 +211,7 @@ export default function App() {
           <span style={{ fontSize: 28 }}>⚡</span>
           <h1 style={{ fontSize: 22, fontWeight: 700, letterSpacing: 2 }}>文档瘦身工具</h1>
         </div>
-        <p style={{ fontSize: 13, opacity: 0.85 }}>Excel · PPT · Word · 图片 · PDF — 全能压缩，单文件输出</p>
+        <p style={{ fontSize: 13, opacity: 0.85 }}>Excel · PPT · Word · 图片 — 全能压缩，单文件输出</p>
       </header>
 
       <main style={{ maxWidth: 640, margin: "0 auto", padding: "24px 16px 40px" }}>
@@ -244,12 +240,12 @@ export default function App() {
             {dragging ? "松开以上传" : "点击上传 / 拖拽文件到这里"}
           </p>
           <p style={{ fontSize: 13, color: "#999" }}>
-            支持 xlsx / pptx / docx / 图片 / PDF
+            支持 xlsx / pptx / docx / 图片
           </p>
           <input
             ref={fileRef}
             type="file"
-            accept=".xlsx,.pptx,.docx,.jpg,.jpeg,.png,.gif,.bmp,.webp,.pdf"
+            accept=".xlsx,.pptx,.docx,.jpg,.jpeg,.png,.gif,.bmp,.webp"
             onChange={onFileChange}
             style={{ display: "none" }}
           />
@@ -331,7 +327,6 @@ export default function App() {
             <li>文档必须提前解密再上传！⚠️</li>
             <li>Excel / PPT / Word：自动压缩内部图片，保持公式文字样式不变</li>
             <li>图片：调整尺寸 + 降低质量，减少文件体积</li>
-            <li>PDF：轻量处理（深层压缩需服务端）</li>
             <li>所有处理在本地浏览器完成，不上传服务器，隐私安全</li>
           </ul>
         </div>

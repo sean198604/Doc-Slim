@@ -1,63 +1,21 @@
 {
   "name": "doc-slim",
   "version": "1.0.1",
-  "description": "文档瘦身工具 - EGO International",
+  "description": "DOC-SLIM — Office document compression tool, part of an enterprise internal efficiency platform",
   "type": "module",
-  "main": "electron/main.js",
   "scripts": {
     "dev": "vite --port 7001",
     "build": "vite build",
-    "preview": "vite preview --port 7001",
-    "electron:dev": "cross-env NODE_ENV=development electron .",
-    "electron:build": "npm run build && electron-builder --win --x64",
-    "electron:pack": "electron-builder --win --x64 --dir"
+    "preview": "vite preview --port 7001"
   },
   "dependencies": {
     "jszip": "^3.10.1",
+    "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
-    "cross-env": "^7.0.3",
-    "electron": "^31.7.7",
-    "electron-builder": "^24.13.3",
     "vite": "^5.0.0"
-  },
-  "build": {
-    "appId": "com.ego-international.doc-slim",
-    "productName": "文档瘦身工具",
-    "copyright": "Copyright © 2026 EGO International",
-    "directories": {
-      "output": "release"
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*",
-      "LOGO.png",
-      "public/**/*"
-    ],
-    "win": {
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "icon": "LOGO.png",
-      "artifactName": "文档瘦身工具-${version}-portable.exe"
-    },
-    "portable": {
-      "artifactName": "文档瘦身工具-${version}-portable.exe"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "文档瘦身工具"
-    }
   }
 }
