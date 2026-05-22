@@ -1,4 +1,4 @@
-# DOC-SLIM · 文档瘦身工具
+# Doc-Slim · 文档瘦身工具
 
 > ⚡ Office 文档压缩工具 — 企业效率平台功能模块  
 > ⚡ Office document compression tool — a feature of an enterprise internal efficiency platform.
@@ -12,7 +12,7 @@
 
 | 项目 | 详情 |
 |---|---|
-| **名称** | DOC-SLIM（文档瘦身工具） |
+| **名称** | Doc-Slim（文档瘦身工具） |
 | **版本** | 1.0.1 |
 | **端口** | 7001 |
 | **部署** | Docker (Nginx) |
@@ -152,7 +152,7 @@ docker compose down
 
 | Item | Detail |
 |---|---|
-| **Name** | DOC-SLIM |
+| **Name** | Doc-Slim |
 | **Version** | 1.0.1 |
 | **Port** | 7001 |
 | **Deployment** | Docker (Nginx) |

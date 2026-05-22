@@ -1,7 +1,7 @@
 {
   "name": "doc-slim",
   "version": "1.0.1",
-  "description": "DOC-SLIM — Office document compression tool, part of an enterprise internal efficiency platform",
+  "description": "Doc-Slim — Office document compression tool, part of an enterprise internal efficiency platform",
   "type": "module",
   "scripts": {
     "dev": "vite --port 7001",
