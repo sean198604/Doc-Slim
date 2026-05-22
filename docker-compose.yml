@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  doc-slim:
+    build: .
+    container_name: doc-slim-7001
+    ports:
+      - "7001:80"
+    restart: unless-stopped
