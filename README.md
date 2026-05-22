@@ -2,7 +2,7 @@
 
 > ⚡ Office document compression tool — a feature of an enterprise internal efficiency platform.
 
-Browser-side document compression — no server upload required. Compresses Excel, PowerPoint, Word, images, and PDF files by intelligently reducing embedded media sizes while preserving formatting, formulas, and layout.
+Browser-side document compression — no server upload required. Compresses Excel, PowerPoint, Word, and images by intelligently reducing embedded media sizes while preserving formatting, formulas, and layout.
 
 ---
 
@@ -21,7 +21,7 @@ Browser-side document compression — no server upload required. Compresses Exce
 | Layer | Technology |
 |---|---|
 | Frontend Framework | React 18 + Vite 5 |
-| File Parsing | JSZip 3.10, pdf-lib |
+| File Parsing | JSZip 3.10 |
 | Image Processing | HTML5 Canvas API |
 | Web Deployment | Nginx Alpine + Docker Compose |
 | Styling | CSS Animations + Inline Styles |
@@ -44,7 +44,6 @@ Browser-side document compression — no server upload required. Compresses Exce
 | `.docx` | Internal image compression | Compresses images in `word/media/`. Formatting preserved. |
 | `.jpg/.jpeg` | Scale + quality | Canvas redraw, JPEG output. |
 | `.png/.gif/.bmp/.webp` | Scale + quality | Canvas redraw, JPEG output. |
-| `.pdf` | Lightweight optimization | Deeper compression requires server-side support. |
 
 > ⚠️ **Note**: Password-protected Office files must be decrypted first.
 
@@ -60,12 +59,9 @@ User uploads file
     │               └─► JSZip repacks (DEFLATE level 6)
     │                   └─► Output .blob → auto-download
     │
-    ├── Image files (.jpg/.png/.gif/.bmp/.webp)
-    │   └─► Canvas scale + JPEG compression
-    │       └─► Output .blob → auto-download
-    │
-    └── PDF
-        └─► Lightweight processing notice
+    └── Image files (.jpg/.png/.gif/.bmp/.webp)
+        └─► Canvas scale + JPEG compression
+            └─► Output .blob → auto-download
 ```
 
 ## 🚀 Quick Start
@@ -135,10 +131,9 @@ docker compose down
 ## 📝 Notes
 
 1. **Encrypted Documents**: Password-protected Office files cannot be processed directly. Decrypt first.
-2. **PDF Limitation**: Current PDF compression is basic optimization. Use professional tools for complex PDFs.
-3. **Image Format**: All images are output as JPEG for optimal compression ratio.
-4. **File Size**: Single file cap is 100MB. Adjustable in CONFIG.
-5. **Browser Compatibility**: Requires Canvas API and JSZip. Works on all modern browsers.
+2. **Image Format**: All images are output as JPEG for optimal compression ratio.
+3. **File Size**: Single file cap is 100MB. Adjustable in CONFIG.
+4. **Browser Compatibility**: Requires Canvas API and JSZip. Works on all modern browsers.
 
 ## 🔒 Privacy & Security
 
