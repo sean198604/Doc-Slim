@@ -13,7 +13,7 @@
 | 项目 | 详情 |
 |---|---|
 | **名称** | Doc-Slim（文档瘦身工具） |
-| **版本** | 1.0.1 |
+| **版本** | 1.1.0 |
 | **端口** | 7001 |
 | **部署** | Docker (Nginx) |
 | **仓库** | [sean198604/doc-slim](https://github.com/sean198604/doc-slim) |
@@ -32,7 +32,8 @@
 
 - 🗜️ **Office 文档深度压缩** — 解析 `.xlsx`、`.pptx`、`.docx` 内部 ZIP 结构，提取媒体文件并压缩后重新打包，保持公式、文字、样式不变
 - 🖼️ **图片智能缩放** — Canvas 重绘 + JPEG 质量调整，可自定义最大宽度和压缩质量
-- 📊 **实时压缩反馈** — 显示处理进度、原文件大小、压缩后大小、节省百分比
+- 📦 **批量图片压缩** — 支持同时上传多张图片，逐张压缩后打包为 ZIP 下载；列表可增删、单独查看压缩效果
+- 📊 **实时压缩反馈** — 显示处理进度、原文件大小、压缩后大小、节省百分比；批量模式下支持总计统计
 - 📋 **历史记录** — 保留最近压缩记录，支持文件名、原大小、瘦身后、效果对比
 - ⚙️ **可调参数** — 滑动调节图片质量 (30%-100%) 和最大宽度 (400px-2400px)
 - 🔒 **本地处理 · 零上传** — 所有计算在浏览器端完成，文件不离开本机
@@ -61,9 +62,14 @@
     │               └─► JSZip 重新打包 (DEFLATE level 6)
     │                   └─► 输出 .blob → 自动下载
     │
-    └── 图片文件 (.jpg/.png/.gif/.bmp/.webp)
-        └─► Canvas 缩放 + JPEG 压缩
-            └─► 输出 .blob → 自动下载
+    ├── 单张图片
+    │   └─► Canvas 缩放 + JPEG 压缩
+    │       └─► 输出 .blob → 自动下载
+    │
+    └── 批量图片（多张）
+        └─► 逐张 Canvas 缩放 + JPEG 压缩
+            └─► 列表展示：等待 → 压缩中 → ✅完成/❌失败
+                └─► JSZip 打包 → 批量瘦身_N张.zip 下载
 ```
 
 ## 🚀 快速启动
@@ -132,8 +138,9 @@ docker compose down
 
 1. **加密文档**：受密码保护的 Office 文件无法直接处理，需先解密
 2. **图片格式**：所有图片统一输出为 JPEG 格式（为达到最佳压缩比）
-3. **文件大小**：单文件上限 100MB，可在 CONFIG 中调整
-4. **浏览器兼容**：依赖 Canvas API 和 JSZip，支持所有现代浏览器
+3. **文件大小**：单文件上限 100MB，批量模式同样生效；超大图片会被自动跳过
+4. **批量注意**：压缩后的 Blob 数据会在下载 ZIP 后自动释放内存；大量图片建议分批处理
+5. **浏览器兼容**：依赖 Canvas API 和 JSZip，支持所有现代浏览器
 
 ## 🔒 隐私安全
 
@@ -172,7 +179,8 @@ docker compose down
 
 - 🗜️ **Office Document Deep Compression** — Parses `.xlsx`, `.pptx`, `.docx` ZIP internals, extracts and compresses media files, then repacks. Formulas, text, and styles are preserved.
 - 🖼️ **Intelligent Image Scaling** — Canvas redraw + JPEG quality adjustment. Configurable max width and compression quality.
-- 📊 **Real-time Feedback** — Displays progress, original size, compressed size, and savings percentage.
+- 📦 **Batch Image Compression** — Upload multiple images at once, compress each individually, then download as a ZIP archive. Add, remove, or review individual compression results.
+- 📊 **Real-time Feedback** — Displays progress, original size, compressed size, and savings percentage. Batch mode includes aggregate statistics.
 - 📋 **History** — Retains recent compression records with before/after comparison.
 - ⚙️ **Adjustable Parameters** — Sliders for image quality (30%–100%) and max width (400px–2400px).
 - 🔒 **Local Processing, Zero Upload** — All computation happens in the browser. Files never leave the machine.
@@ -192,7 +200,7 @@ docker compose down
 ## 🔧 Compression Flow
 
 ```
-User uploads file
+User uploads file(s)
     │
     ├── Office documents (.xlsx/.pptx/.docx)
     │   └─► JSZip parses ZIP structure
@@ -201,9 +209,14 @@ User uploads file
     │               └─► JSZip repacks (DEFLATE level 6)
     │                   └─► Output .blob → auto-download
     │
-    └── Image files (.jpg/.png/.gif/.bmp/.webp)
-        └─► Canvas scale + JPEG compression
-            └─► Output .blob → auto-download
+    ├── Single image
+    │   └─► Canvas scale + JPEG compression
+    │       └─► Output .blob → auto-download
+    │
+    └── Batch images (multiple)
+        └─► Canvas scale + JPEG compression (one by one)
+            └─► List display: pending → processing → ✅done/❌error
+                └─► JSZip packs → batch_N_images.zip download
 ```
 
 ## 🚀 Quick Start
@@ -272,8 +285,9 @@ docker compose down
 
 1. **Encrypted Documents**: Password-protected Office files cannot be processed directly. Decrypt first.
 2. **Image Format**: All images are output as JPEG for optimal compression ratio.
-3. **File Size**: Single file cap is 100MB. Adjustable in CONFIG.
-4. **Browser Compatibility**: Requires Canvas API and JSZip. Works on all modern browsers.
+3. **File Size**: Single file cap is 100MB, also enforced in batch mode; oversized images are silently skipped.
+4. **Batch Note**: Compressed blob data is released from memory automatically after ZIP download. For very large batches, process in smaller groups.
+5. **Browser Compatibility**: Requires Canvas API and JSZip. Works on all modern browsers.
 
 ## 🔒 Privacy & Security
 
