@@ -326,7 +326,7 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#f0f2f5" }}>
       {/* Header */}
-      <header style={{ background: "linear-gradient(135deg, #059669 0%, #10b981 100%)", color: "#fff", padding: "28px 20px 22px", textAlign: "center" }}>
+      <header style={{ background: "linear-gradient(135deg, #059669 0%, #10b981 100%)", color: "#fff", padding: "20px 0", textAlign: "center", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 4px 20px rgba(0,0,0,0.15)" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 6 }}>
           <span style={{ fontSize: 28 }}>⚡</span>
           <h1 style={{ fontSize: 22, fontWeight: 700, letterSpacing: 2 }}>文档瘦身工具</h1>
