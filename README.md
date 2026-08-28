@@ -1,3 +1,5 @@
+<div align="center">
+
 # ⚡ Doc-Slim · 文档瘦身工具 / Document Slimming Tool
 
 > 企业级 Office 文档与图片压缩工具 — 邮件附件、OA 上传、资料归档前的一站式瘦身方案。本地处理零上传，一键压缩 xlsx / pptx / docx 与批量图片。
@@ -6,6 +8,8 @@
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+</div>
 
 **关键词 / Keywords**：邮件附件压缩 · 图片批量压缩 · Office 文档瘦身 · xlsx/pptx/docx 压缩 · 企业邮箱附件限制 · 本地压缩工具 ·
 email attachment compressor · batch image compression · Office document size reducer · compress PPT before sending ·
