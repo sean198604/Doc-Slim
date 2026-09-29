@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/readme-cover.png" alt="Doc Slim project cover" width="100%" /></p>
+
 <div align="center">
 
 # ⚡ Doc-Slim · 文档瘦身工具 / Document Slimming Tool
